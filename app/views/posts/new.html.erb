@@ -1,0 +1,8 @@
+<h1>게시글 쓰기</h1>
+
+==================================================
+<%= form_tag('/posts/create', method: "post") do %>
+    제목 : <%= text_field_tag :title, nil, placeholder: '제목을 입력하세요' %><br><br>
+    내용 : <%= text_area_tag :content %><br><br>
+    <%= submit_tag '전송' %>
+<% end %>

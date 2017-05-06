@@ -1,0 +1,19 @@
+<h1>게시글</h1>
+<%= link_to '게시글 쓰기', '/posts/new'%><br><br>
+
+<% @posts.each do |p| %>
+==================================================<br>
+<h3>제목 : <%= p.title %></h3>
+<h3>내용 : <%= p.content %></h3>
+<%= link_to '수정', {controller: :posts, action: :edit, post_id: p.id} %> <%= link_to '삭제', {controller: :posts, action: :destroy, post_id: p.id} %><br><br>
+▷댓글 쓰기 : <%= form_tag({controller: :comments, action: :create, post_id: p.id}) do %>
+    <%= text_field_tag :content, nil, placeholder: '댓글을 작성해주세요' %>
+    <%= submit_tag '전송' %>
+<% end %>
+<br>
+▷댓글 <br>
+<% p.comments.all.each do |c| %>
+→ <%=c.content %> <%= link_to '수정', {controller: :comments, action: :edit, post_id: p.id, comment_id: c.id} %> <%= link_to '삭제', {controller: :comments, action: :destroy, post_id: p.id, comment_id: c.id} %><br>
+<% end %>
+==================================================<br>
+<% end %>

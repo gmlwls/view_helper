@@ -1,0 +1,8 @@
+<h1>게시글 수정</h1>
+
+==================================================
+<%= form_tag({controller: :posts, action: :update, post_id: @post.id}) do %>
+    제목 : <%= text_field_tag :title, @post.title %><br><br>
+    내용 : <%= text_area_tag :content, @post.content %><br><br>
+    <%= submit_tag '전송' %>
+<% end %>
